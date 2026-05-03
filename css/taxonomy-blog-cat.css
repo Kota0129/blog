@@ -1,0 +1,58 @@
+@charset "UTF-8";
+/* =========================
+   一覧ページ
+========================= */
+.archive__content {
+  padding: 8rem 0;
+}
+@media (max-width: 768px) {
+  .archive__content {
+    padding: 4rem 0;
+  }
+}
+
+.archive__title {
+  font-size: clamp(3rem, 1.88vw, 3.6rem);
+  padding-bottom: 0.8rem;
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 1.5rem;
+}
+.archive__title::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, #4a6bb6, transparent);
+}
+
+.archive__title-c {
+  font-size: 2rem;
+  color: #182848;
+  display: inline-block;
+  padding: 0.4rem 1rem;
+  border-radius: 999px;
+  width: -moz-fit-content;
+  width: fit-content;
+  background: linear-gradient(90deg, #F5F5F5, rgb(252.65, 252.65, 252.65));
+  position: relative;
+  padding-left: 1.4rem;
+}
+.archive__title-c::before {
+  content: "";
+  position: absolute;
+  left: 0.6rem;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 4px;
+  height: 60%;
+  background: #4a6bb6;
+  border-radius: 2px;
+}
+
+.cat-title {
+  margin-bottom: 1rem;
+}/*# sourceMappingURL=taxonomy-blog-cat.css.map */

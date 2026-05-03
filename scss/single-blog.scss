@@ -1,0 +1,367 @@
+@use "const" as *;
+@use "mixin" as *;
+/* =========================
+   article
+========================= */
+.article {}
+
+.article__inner {
+}
+
+.article__head {
+    margin-bottom: 4rem;
+}
+
+.article__title {}
+
+.article__dateCat {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.article__cat {
+    width: fit-content;
+    padding: 0.1rem 0.4rem;
+    font-size: 1rem;
+}
+
+.article__date {
+    width: fit-content;
+    font-size: 1.2rem;
+}
+
+.article__image {
+    width: 100%;
+    max-width: 800px; 
+    aspect-ratio: 16 / 9;
+    margin: 0 auto 6rem;
+
+    img {
+        width: 100%;
+        object-fit: cover;
+    }
+}
+
+// 目次
+.toc {
+    border: 1px solid $middle-gray;
+    max-width: 800px;
+    width: 100%;
+    margin: 0 auto 6rem;
+  }
+  
+  .toc__header {
+    width: 100%;
+    padding: 1.6rem;
+    background: $light-gray;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .toc__title {
+    font-size: clamp(2rem, 1.7vw, 3.2rem);
+    color: $navy-light;
+  }
+  
+  .toc__icon {
+    transform: rotate(180deg);
+
+    svg {     
+        transition: transform 0.2s ease;  
+
+        @media (max-width: 768px) {
+            width: 1.2rem;
+            height: 0.8rem;
+        }
+      }
+  }
+  
+  .js-toc.is-open .toc__icon svg {
+    transform: rotate(180deg);
+    transition: .2s ease;
+}
+  
+  .toc__body {
+    padding: 1.6rem;
+  }
+  
+  .toc__list {
+    list-style: none;
+    padding-left: 0;
+  }
+
+  .toc__item {
+    margin-bottom: 1rem;
+
+    @media (max-width: 768px) {
+        margin-bottom: 0.5rem;
+    }
+}
+/* ---------- h2 ---------- */
+.toc__item--h2 .toc__link {
+    position: relative;
+    padding-left: 1.4rem;
+    font-weight: 700;
+    color: $navy-light;
+    display: block;
+  }
+  
+  .toc__item--h2 .toc__link::before {
+    content: "・";
+    position: absolute;
+    left: 0;
+    top: 0;
+    color: $navy-light;
+  }
+  
+  /* ---------- h3 ---------- */
+  .toc__item--h3 .toc__link {
+    position: relative;
+    padding-left: 1.5rem;
+    color: $navy-light;
+    display: block;
+    font-weight: 500;
+  }
+  
+  .toc__item--h3 .toc__link::before {
+    content: "›"; 
+    font-size: clamp(2rem, 1.32vw, 2.5rem);
+    position: absolute;
+    left: 0;
+    top: -0.8rem;
+    color: $middle-gray;
+  }
+  @media (max-width: 768px) {
+    .toc__item--h3 .toc__link::before {
+        top: -1.2rem;
+    }
+  }
+  /* ---------- h4 ---------- */
+  .toc__item--h4 .toc__link {
+    padding-left: 0;
+    color: $middle-gray;
+    display: block;
+  }
+  
+/* H2: そのまま（ベーススタイル） */
+.toc__item--h2 {
+    font-weight: bold;
+  }
+  
+  /* H3: 一文字下げ */
+  .toc__item--indent-1 {
+    /* 例: padding-left で字下げを表現 */
+    padding-left: 1.5em; 
+  }
+  
+  /* H4: H3よりさらに一文字下げ */
+  .toc__item--indent-2 {
+    /* H3の字下げ + 追加の字下げ（例: 1.5em + 1.5em = 3em） */
+    padding-left: 3em; 
+  }
+  
+  /* H4: 文字を薄く */
+  .toc__link--faint {
+    opacity: 0.7; /* 例: 透明度で文字を薄く */
+    font-weight: normal; /* 太字を解除 */
+  }
+
+  .article__content {
+    border-bottom: 2px dotted $middle-gray;
+    padding-bottom: 4rem; 
+    margin-bottom: 5rem;
+
+  // =========================
+  // 見出し h2
+  // =========================
+  h2 {
+    background: linear-gradient(90deg, $navy-light 0%, $navy 100%);
+    color: $white;
+    padding: 1rem 1.5rem;
+    margin: 3rem 0 1.5rem;
+    font-size: 2.4rem;
+    border-radius: 4px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+  }
+
+  // =========================
+  // 見出し h3
+  // =========================
+   h3 {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 2.5rem 0 1rem;
+    padding-left: 1rem;
+    border-left: 5px solid $orange;
+    background: $light-gray;
+    line-height: 1.5;
+  }
+
+  // =========================
+  // 見出し h4
+  // =========================
+  h4 {
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin: 2rem 0 0.8rem;
+    border-bottom: 2px solid $middle-gray;
+    width: fit-content;
+  }
+
+  // =========================
+  // テキスト
+  // =========================
+  p {
+    font-size: 1.8rem;
+    margin-bottom: 1.6rem;
+    line-height: 1.9;
+    color: $black-900;
+  }
+  // =========================
+  // リスト
+  // =========================
+  ul,
+  ol {
+    padding-left: 2.4rem;
+    margin-bottom: 1.6rem;
+  }
+
+  li {
+    list-style: disc;
+    margin-bottom: 0.6rem;
+    line-height: 1.8;
+
+    &::marker {
+      color: $navy-light;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+
+  // =========================
+  // 強調
+  // =========================
+  strong {
+    background: linear-gradient(transparent 60%, rgba(226, 105, 0, 0.3) 60%);
+    font-weight: 700;
+  }
+
+// =========================
+// コード（VSCode風シンプル）
+// =========================
+
+code {
+  padding: 0.2rem 0.5rem;
+  font-size: 1.4rem;
+  border-radius: 3px;
+}
+
+// コードブロック
+pre {
+  background: $black-800;
+  color: $white;
+  padding: 1.5rem;
+  width: fit-content;
+  overflow-x: auto;
+  margin: 2rem 0;
+  border-radius: 6px;
+  line-height: 1.6;
+  position: relative;
+}
+
+  // =========================
+  // 画像
+  // =========================
+  img {
+    margin: 2rem 0;
+    border-radius: 6px;
+  }
+  
+  }
+  
+/* =========================
+   関連記事
+========================= */
+.article__a-wrapper {}
+
+.article__a-title {
+    font-size: 2.4rem;
+    margin-bottom: 3rem;
+    padding-left: 2rem;
+    position: relative;
+
+    &::before {
+        content: "";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+        background-color: $navy-light;
+        width: 2px;
+        height: 100%;
+        border-radius: 2px;
+    }
+}
+.article__a-list {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+
+    @include sp {
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+}
+
+.article__a-item {
+    width: calc(100% / 3);
+
+    @include sp {
+      width: 100%;
+    }
+}
+
+.article__a-link {
+    width: 100%;
+    display: block;
+
+    &:hover > .article__a-subTitle {
+        opacity: 0.6;
+
+          @include sp {
+              opacity: 1;
+          }
+    }
+
+    &:hover > .article__a-img img {
+        transform: scale(1.03);
+
+          @include sp {
+              transform: scale(1);
+          }
+    }
+}
+
+.article__a-subTitle {
+    transition: transform 0.3s ease;
+    min-height: 6rem;
+    line-height: 1.2;
+}
+
+.article__a-img {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        margin-bottom: 1.5rem;
+
+    img {
+        width: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+}

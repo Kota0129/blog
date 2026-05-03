@@ -1,0 +1,678 @@
+@charset "UTF-8";
+@use "const" as *;
+@use "mixin" as *;
+
+html {
+  font-size: 62.5%; /* 16px × 62.5% = 10px */
+  scroll-behavior: smooth;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  min-width: 1080px;
+  width: 100%;
+  min-height: 100vh;
+  font-family: "Noto Sans JP", sans-serif;
+  font-size: 1.6rem;
+  line-height: 1.6;
+  color: black;
+  background-color: white;
+  margin: 0;
+  padding: 0;
+
+  @include sp {
+    min-width: initial;
+  }
+}
+
+/* reset */
+* {
+  &::before,
+  &::after {
+    box-sizing: border-box;
+  }
+}
+
+img,
+picture,
+video,
+canvas,
+svg {
+  max-width: 100%;
+  height: auto;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  cursor: pointer;
+}
+
+li {
+  list-style: none;
+}
+
+:focus-visible {
+  outline: 2px solid $focusBlue;
+  outline-offset: 2px;
+}
+
+address {
+  font-style: normal;
+}
+
+/* font */
+.inter {
+  font-family: "Inter", sans-serif;
+}
+
+/* font weight */
+.fw-700 { font-weight: 700; }
+.fw-600 { font-weight: 600; }
+.fw-500 { font-weight: 500; }
+.fw-400 { font-weight: 400; }
+
+/* color */
+.fc-white { color: $white; }
+
+/* background */
+.bg-white { background-color: $white; }
+.bg-navy { background-color: $navy; }
+
+/* margin */
+.mb-20 { margin-bottom: 2rem; }
+
+@include sp {
+  .scroll-margin-heading {
+    scroll-margin-top: 6.9rem;
+  }
+}
+
+.inner {
+  max-width: 1500px;
+  width: 100%;
+  margin: 0 auto;
+
+  @include sp {
+    padding: 0 2rem;
+  }
+}
+
+.pc-only {
+  display: block;
+
+  @include sp {
+    display: none;
+  }
+}
+
+.sp-only {
+  display: none;
+
+  @include sp {
+    display: block;
+  }
+}
+
+/* ボタン */
+.btn {
+  display: inline-block;
+  padding: 0.8rem 0;
+  text-align: center;
+  transition: 0.3s;
+
+  &.sidebar__btn {
+    width: 100%;
+    background-color: $blue;
+    border-radius: 30px;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+
+    @include sp {
+      display: block;
+      width: 50%;
+      margin: 0 auto;
+    }
+
+    &.mb {
+        margin-bottom: 1.5rem;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+
+  &.error__btn {
+    display: block;
+    width: 200px;
+    background-color: $blue;
+    border-radius: 30px;
+    margin: 0 auto;
+
+    &:hover {
+      background: $navy;
+      transform: translateY(-2px);
+    }
+  }
+}
+
+/* =========================
+   Header
+========================= */
+.header {}
+
+.header__inner {
+  padding: 2rem 0;
+}
+
+.header__logo {}
+
+.header__logo-link {
+    display: block;
+    width: 100%;
+    height: 100%;
+    font-size: clamp(2.4rem, 2.71vw, 5.2rem);
+    text-align: center;
+}
+
+/* =========================
+   Breadcrumb
+========================= */
+.breadcrumb {
+  background-color: $light-gray;
+}
+
+.breadcrumb__list {
+  display: flex;
+  flex-wrap: wrap;
+  padding: 1rem 0 1rem 2rem;
+}
+
+.breadcrumb__item {
+  display: flex;
+  align-items: center;
+  font-size: clamp(1rem, 0.8vw, 1.4rem);
+}
+
+.breadcrumb__item:not(:last-child)::after {
+  content: ">";
+  margin: 0 0.4em;
+  display: inline-block;
+}
+
+.breadcrumb__link {
+  display: block;
+  width: 100%;
+}
+
+/* =========================
+   サイドバーのレイアウト土台
+========================= */
+.container {
+  display: flex;
+  width: 100%;
+  min-height: 100vh;
+  padding: 6rem 0 10rem 2rem;
+  
+       @include sp {
+        flex-direction: column;
+        gap: 2rem;
+        padding: 5rem 2rem;
+      }
+
+  .main-content {
+    flex: 1;
+    min-width: 0; /* flex崩れ防止 */
+  }
+
+  .sidebar {
+    width: 300px;
+    flex-shrink: 0; /* 縮まない */
+
+      @include sp {
+        width: 100%;
+      }
+  }
+}
+
+/* =========================
+   サイドバー本体
+========================= */
+.sidebar__inner {
+  position: sticky;
+  top: 0;
+  height: auto;
+  max-height: none;
+  overflow-y: visible;
+  padding: 0 2rem;
+
+  @include sp {
+    position: static;
+    height: auto;
+    padding: 0;
+  }
+}
+
+.sidebar__p {
+  border: 1px solid $gray;
+  padding: 2rem;
+  margin-bottom: 4rem;
+}
+
+.sidebar__p-head {
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.sidebar__p-img {
+    width: 68%;
+    border-radius: 50%;
+    margin: 0 auto;
+
+    @include sp {
+        width: 30%;
+    }
+
+    img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+}
+
+.sidebar__p-name {
+    font-size: 2rem;
+}
+
+.sidebar__p-work {
+    opacity: 0.6;
+}
+
+.sidebar__c {
+
+}
+
+.sidebar__c-title {
+    font-size: 1.8rem;
+    padding-left: 2rem;
+    margin-bottom: 0.5rem;
+    position: relative;
+
+    &::before {
+        content: "◯";
+        display: block;
+        position: absolute;
+        top: 50%;
+        left: 0;
+        transform: translateY(-50%);
+    }
+}
+
+.sidebar__c-list {
+    margin-bottom: 3rem;
+}
+
+.sidebar__c-item {
+    padding-left: 2rem;
+    position: relative;
+    margin-bottom: 1rem;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+
+    &::before {
+        content: "■";
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+}
+
+.sidebar__a {}
+
+.sidebar__a-title {
+    margin-bottom: 1.5rem;
+
+    @include sp {
+        margin-bottom: 0.5rem;
+    }
+}
+
+.sidebar__a-list {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+}
+
+.sidebar__a-item {
+    width: 100%;
+}
+
+.sidebar__a-link {
+    width: 100%;
+    display: block;
+
+    &:hover > .sidebar__a-img img {
+        transform: scale(1.05);
+      }
+
+    &:hover > .sidebar__a-subTitle {
+        opacity: 0.6;
+      }
+
+  // SP表示時にhoverを無効化
+  @include sp {
+    &:hover > .sidebar__a-img img {
+      transform: none;
+    }
+
+    &:hover > .sidebar__a-subTitle {
+      opacity: 1;
+    }
+  }
+}
+
+
+.sidebar__a-subTitle {
+    border-bottom: 1px solid $gray;
+    margin-bottom: 2rem;
+    padding-bottom: 0.5rem;
+
+}
+
+.sidebar__a-img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+
+    img {
+        width: 100%;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+    }
+}
+
+/* =========================
+   Card
+========================= */
+/* カード */
+.card-wrapper {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  
+}
+
+.card {
+  display: block;
+  width: calc(100% / 3);
+  padding: 0 clamp(1rem, 1.05vw, 2rem);
+  margin-bottom: 4rem;
+  transition: 0.3s;
+
+  @include sp {
+    width: calc(100% / 2);
+    padding: 0 2rem;
+    margin-bottom: 3rem;
+  }
+
+  &:hover > .card__image img {
+      transform: scale(1.05);
+  }
+  &:hover > .card__body {
+      opacity: 0.6;
+  }
+}
+
+.card__image {
+  width: 100%;
+  border-radius: 20px;
+  margin-bottom: 1.5rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+    border-radius: inherit;
+  }
+ 
+}
+
+.card__body {
+  transition: transform 0.3s ease;
+  padding-left: 1rem;
+}
+
+.card__title {
+  font-size: clamp(1.6rem, 1.05vw, 2rem);
+}
+
+.card__content {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.card__date {
+  width: fit-content;
+  font-size: clamp(1.2rem, 0.74vw, 1.4rem);
+}
+
+.card__cat {
+  width: fit-content;
+  padding: 0.1rem 0.4rem;
+  font-size: clamp(1rem, 0.63vw, 1.2rem);
+}
+
+  /* =========================
+     カテゴリーリスト
+  ========================= */
+  .cat-title {
+    font-size: clamp(2.4rem, 1.78vw, 3.4rem);
+    margin-bottom: 1rem;
+ }
+ 
+  .cat-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    align-items: center;
+    margin-bottom: 5rem;
+  }
+  
+  .cat-list__link {
+    display: inline-block;
+    padding: 0.8rem 1rem;
+    border-radius: 999px;
+    font-size: clamp(1.6rem, 0.94vw, 1.8rem);
+    line-height: 1;
+    transition: opacity 0.3s ease, transform 0.3s ease;
+
+    &:hover {
+        opacity: 0.8;
+        transform: translateY(-2px);
+
+        @include sp {
+            transform: translateY(0);
+            opacity: 1;
+        }
+    }
+  }
+
+/* =========================
+   Footer
+========================= */
+.footer {
+  background-color: $navy-light;
+}
+
+.footer__inner {
+  padding: 2rem 0;
+
+  @include sp {
+    padding: 1rem 0;
+  }
+}
+
+.footer__copy {
+  font-size: clamp(1.6rem,1.05vw,2rem);
+    text-align: center;
+}
+
+/* =========================
+   Error
+========================= */
+.error404 {
+  min-height: 100vh;
+}
+.error__inner {
+  padding: 10rem 0;
+  text-align: center;
+}
+
+.error__title {
+    font-size: 4rem;
+    margin-bottom: 2rem;
+}
+
+.error__text {
+}
+
+.error__image {
+  width: 500px;
+  margin: 0 auto 5rem;
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+}
+
+/* =========================
+   ページネーション
+========================= */
+.page__pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 2.4rem;
+
+  @include sp {
+    margin-top: 0;
+    flex-direction: column;
+    gap: 2.7rem;
+    padding: 0 2.1rem;
+  }
+}
+
+.page__pagination-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 4.5rem;
+  margin: 0 2.5rem;
+  position: relative;
+  width: fit-content;
+
+    @include sp {
+      margin-right: 0;
+      gap: 4.9rem;
+    }
+}
+
+.page__pagination-item {
+  width: fit-content;
+  display: block;
+  font-size: clamp(1.6rem, 1.2vw, 2.2rem);
+  transition: all 0.5s ease;
+
+  &:hover {
+    color: $orange;
+  }
+}
+
+.ellipsis {
+  transform: translateY(-20%);
+
+  @include sp {
+    transform: translateY(0);
+  }
+}
+
+.page__pagination-btn {
+  display: flex;
+  gap: 2rem;
+  width: fit-content;
+
+    @include sp {
+      gap: 0.8rem;
+      margin-left: initial;
+    }
+}
+
+.current {
+  color: $orange;
+}
+
+.page__pagination-first,
+.page__pagination-prev,
+.page__pagination-next,
+.page__pagination-last {
+  width: fit-content;
+}
+
+.page__pagination-link {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  transition: color 0.3s ease, border-color 0.3s ease;
+  border: 1px solid $black-900;
+  padding: 0.15rem 1.1rem;
+
+  svg path {
+    transition: stroke 0.3s ease;
+  }
+
+  &:hover {
+    border: 1px solid $orange;
+    color: $orange;
+
+    svg path {
+      stroke: $orange;
+    }
+  }
+}
+
+@include sp {
+  .page__pagination-btn-pc {
+    display: none;
+  }
+}
+
+.page__pagination-btn-left,
+.page__pagination-btn-right  {
+  width: fit-content;
+  margin-left: initial;
+}
+
+.page__pagination-btn-sp  {
+  display: none;
+  width: 100%;
+
+  @include sp {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
