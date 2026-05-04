@@ -266,12 +266,54 @@ pre {
   background: $black-800;
   color: $white;
   padding: 1.5rem;
-  width: fit-content;
+  width: 50%;
   overflow-x: auto;
   margin: 2rem 0;
   border-radius: 6px;
   line-height: 1.6;
   position: relative;
+}
+
+// =========================
+// テーブル
+// =========================
+table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  margin: 2.5rem 0;
+  font-size: 1.6rem;
+  background: $white;
+  border-radius: 6px;
+  overflow: hidden;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.05);
+}
+
+// ヘッダー
+th {
+  background: $navy;
+  color: $white;
+  text-align: left;
+  padding: 1.2rem 1.5rem;
+  font-weight: 600;
+}
+
+// セル
+td {
+  padding: 1.2rem 1.5rem;
+  border-bottom: 1px solid $middle-gray;
+  line-height: 1.7;
+}
+
+// 偶数行（見やすさUP）
+tr:nth-child(even) {
+  background: $light-gray;
+}
+
+// 左右の境界線をほんのり追加（見やすさUP）
+th + th,
+td + td {
+  border-left: 1px solid $middle-gray;
 }
 
   // =========================
