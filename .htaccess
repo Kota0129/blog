@@ -1,0 +1,4 @@
+AuthType Basic
+AuthName "Test Site"
+Require valid-user
+AuthUserFile /home/c3201597/.htpasswds/kotaweboffice.com/test-blog/.htpasswd
