@@ -111,53 +111,48 @@
             $last_page = $results_query->max_num_pages;
           ?>
 
-            <nav class="page__pagination" aria-label="ページナビゲーション">
+<nav class="page__pagination" aria-label="ページナビゲーション">
 
-              <div class="page__pagination-btn page__pagination-btn-pc c-gray fw-700">
-                <?php if ( $paged > 1 ) : ?>
-                  <div class="page__pagination-first">
-                    <a href="<?php echo esc_url( get_pagenum_link( 1 ) ); ?>" class="page__pagination-link">
-                      最初
-                    </a>
-                  </div>
-                <?php endif; ?>
+<!-- 左側ボタンエリア -->
+<div class="page__pagination-btn page__pagination-btn-pc c-gray fw-700">
+  <div class="page__pagination-first">
+    <?php if ( $paged > 1 ) : ?>
+      <a href="<?php echo esc_url( get_pagenum_link( 1 ) ); ?>" class="page__pagination-link">最初</a>
+    <?php endif; ?>
+  </div>
 
-                <?php if ( $prev_page ) : ?>
-                  <div class="page__pagination-prev">
-                    <a href="<?php echo esc_url( get_pagenum_link( $prev_page ) ); ?>" class="page__pagination-link">
-                      前のページ
-                    </a>
-                  </div>
-                <?php endif; ?>
-              </div>
+  <div class="page__pagination-prev">
+    <?php if ( $prev_page ) : ?>
+      <a href="<?php echo esc_url( get_pagenum_link( $prev_page ) ); ?>" class="page__pagination-link">前のページ</a>
+    <?php endif; ?>
+  </div>
+</div>
 
-              <ul class="page__pagination-list fw-700">
-                <?php foreach ( $links as $link ) : ?>
-                  <li class="page__pagination-item">
-                    <?php echo $link; ?>
-                  </li>
-                <?php endforeach; ?>
-              </ul>
+<!-- 中央数字エリア -->
+<ul class="page__pagination-list fw-700">
+  <?php foreach ( $links as $link ) : ?>
+    <li class="page__pagination-item">
+      <?php echo $link; ?>
+    </li>
+  <?php endforeach; ?>
+</ul>
 
-              <div class="page__pagination-btn page__pagination-btn-pc c-gray fw-700">
-                <?php if ( $next_page ) : ?>
-                  <div class="page__pagination-next">
-                    <a href="<?php echo esc_url( get_pagenum_link( $next_page ) ); ?>" class="page__pagination-link">
-                      次のページ
-                    </a>
-                  </div>
-                <?php endif; ?>
+<!-- 右側ボタンエリア -->
+<div class="page__pagination-btn page__pagination-btn-pc c-gray fw-700">
+  <div class="page__pagination-next">
+    <?php if ( $next_page ) : ?>
+      <a href="<?php echo esc_url( get_pagenum_link( $next_page ) ); ?>" class="page__pagination-link">次のページ</a>
+    <?php endif; ?>
+  </div>
 
-                <?php if ( $paged < $last_page ) : ?>
-                  <div class="page__pagination-last">
-                    <a href="<?php echo esc_url( get_pagenum_link( $last_page ) ); ?>" class="page__pagination-link">
-                      最後
-                    </a>
-                  </div>
-                <?php endif; ?>
-              </div>
+  <div class="page__pagination-last">
+    <?php if ( $paged < $last_page ) : ?>
+      <a href="<?php echo esc_url( get_pagenum_link( $last_page ) ); ?>" class="page__pagination-link">最後</a>
+    <?php endif; ?>
+  </div>
+</div>
 
-            </nav>
+</nav>
           <?php endif; ?>
         </div>
 
