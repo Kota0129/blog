@@ -1,7 +1,7 @@
 <?php get_header(); ?>
 
 <nav class="breadcrumb">
-  <ol class="breadcrumb__list fw-700" itemscope itemtype="http://schema.org/BreadcrumbList">
+  <ol class="breadcrumb__list inner fw-700" itemscope itemtype="http://schema.org/BreadcrumbList">
     <li class="breadcrumb__item" itemprop="itemListElement" itemscope itemtype="http://schema.org/ListItem">
       <a class="breadcrumb__link" itemprop="item" href="<?php echo esc_url( home_url() ); ?>">
         <span itemprop="name">top</span>

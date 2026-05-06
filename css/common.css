@@ -558,10 +558,9 @@ address {
 ========================= */
 .page__pagination {
   display: flex;
+  justify-content: center;
   align-items: center;
   margin-top: 2.4rem;
-  position: absolute;
-  left: 50%;
 }
 @media (max-width: 768px) {
   .page__pagination {

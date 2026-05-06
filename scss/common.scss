@@ -563,11 +563,10 @@ address {
    ページネーション
 ========================= */
 .page__pagination {
-  display: flex;
+  display: flex; 
+  justify-content: center;
   align-items: center;
   margin-top: 2.4rem;
-  position: absolute;
-  left: 50%;
 
   @include sp {
     margin-top: 0;

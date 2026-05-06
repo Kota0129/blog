@@ -4,7 +4,6 @@
 ========================= */
 .archive__content {
   padding: 8rem 0;
-  position: relative;
 }
 @media (max-width: 768px) {
   .archive__content {

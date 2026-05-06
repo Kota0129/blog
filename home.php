@@ -122,7 +122,29 @@
 
         </nav>
         <?php endif; ?>
+                    <!-- ピックアップ -->
+                    <div class="article__cat">
+                <h2 class="cat-title inter">Category</h2>
+                <?php
+                    $terms = get_terms(array(
+                    'taxonomy'   => 'blog-cat',
+                    'hide_empty' => false, // 投稿がなくても表示するなら false
+                    ));
 
+                    if (!empty($terms) && !is_wp_error($terms)) :
+                    ?>
+                    <ul class="cat-list">
+                        <?php foreach ($terms as $term) : ?>
+                        <li class="cat-list__item">
+                            <a class="cat-list__link inter bg-navy fc-white"
+                            href="<?php echo esc_url(get_term_link($term)); ?>">
+                            <?php echo esc_html($term->name); ?>
+                            </a>
+                        </li>
+                        <?php endforeach; ?>
+                    </ul>
+                <?php endif; ?>
+             </div>
       </div>
     </section>
   </main>
