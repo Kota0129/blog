@@ -136,7 +136,7 @@ address {
 
     @include sp {
       display: block;
-      width: 50%;
+      width: 75%;
       margin: 0 auto;
     }
 
@@ -193,7 +193,8 @@ address {
 .breadcrumb__list {
   display: flex;
   flex-wrap: wrap;
-  padding: 1rem 0 1rem 2rem;
+  padding: 1rem 2rem;
+
 }
 
 .breadcrumb__item {
@@ -224,8 +225,8 @@ address {
   
        @include sp {
         flex-direction: column;
-        gap: 2rem;
-        padding: 5rem 2rem;
+        gap: 3rem;
+        padding: 3rem 2rem 0;
       }
 
   .main-content {
@@ -265,6 +266,10 @@ address {
   border: 1px solid $gray;
   padding: 2rem;
   margin-bottom: 4rem;
+
+    @include sp {
+      margin-bottom: 2rem;
+    }
 }
 
 .sidebar__p-head {
@@ -409,7 +414,6 @@ address {
   width: 100%;
   display: flex;
   flex-wrap: wrap;
-  
 }
 
 .card {
@@ -421,7 +425,7 @@ address {
 
   @include sp {
     width: calc(100% / 2);
-    padding: 0 2rem;
+    padding: 0 0.5rem;
     margin-bottom: 3rem;
   }
 
@@ -435,7 +439,7 @@ address {
 
 .card__image {
   width: 100%;
-  border-radius: 20px;
+  border-radius: 5px;
   margin-bottom: 1.5rem;
 
   img {
@@ -451,10 +455,14 @@ address {
 .card__body {
   transition: transform 0.3s ease;
   padding-left: 1rem;
+
+  @include sp {
+    padding-left: 0;
+  }
 }
 
 .card__title {
-  font-size: clamp(1.6rem, 1.05vw, 2rem);
+  font-size: clamp(1.3rem, 1.05vw, 2rem);
 }
 
 .card__content {
@@ -488,6 +496,10 @@ address {
     gap: 0.4rem;
     align-items: center;
     margin-bottom: 5rem;
+
+    @include sp {
+      margin-bottom: 0;
+    }
   }
   
   .cat-list__link {
@@ -525,7 +537,7 @@ address {
 }
 
 .footer__copy {
-  font-size: clamp(1.6rem,1.05vw,2rem);
+  font-size: clamp(1.2rem,1.05vw,2rem);
     text-align: center;
 }
 
@@ -572,7 +584,7 @@ address {
     margin-top: 0;
     flex-direction: column;
     gap: 2.7rem;
-    padding: 0 2.1rem;
+    margin-bottom: 2rem;
   }
 }
 
@@ -586,7 +598,7 @@ address {
   width: fit-content;
 
     @include sp {
-      margin-right: 0;
+      margin: 0;
       gap: 4.9rem;
     }
 }
