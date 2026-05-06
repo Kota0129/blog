@@ -1,0 +1,26 @@
+name: Deploy Theme to ConoHa
+on:
+  push:
+    branches:
+      - main  # mainブランチにpushされたら実行
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: FTP Deploy
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          # 反映先のパス（ConoHa上のテーマフォルダを指定）
+          server-dir: /public_html/blog.kotaweboffice.com/wp-content/themes/blog/
+          # 転送から除外するファイル（もしあれば）
+          exclude: |
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
